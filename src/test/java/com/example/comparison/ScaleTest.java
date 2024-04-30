@@ -10,22 +10,20 @@ class ScaleTest {
     @Test
      void bothValuesAreEqual() {
 
-        Scale scale = new Scale(1);
+        Scale scaleLhs = new Scale(1);
+        Scale scaleRhs = new Scale(1);
 
-        Boolean result = scale.isEqual(1);
-
-        assertTrue(result);
+        assertEquals(scaleLhs,scaleRhs);
 
     }
 
     @Test
     void bothValuesAreNotEqual() {
 
-        Scale scale = new Scale(2);
+        Scale scaleLhs = new Scale(1);
+        Scale scaleRhs = new Scale(2);
 
-        Boolean result = scale.isEqual(1);
-
-        assertFalse(result);
+       assertNotEquals(scaleLhs,scaleRhs);
 
     }
 
@@ -33,9 +31,10 @@ class ScaleTest {
     void invalidValues() {
 
         assertThrows(IllegalArgumentException.class,() -> {
-            new Scale(0).isEqual(-1);
+           new Scale(-1).equals(new Scale(-1));
         });
 
     }
+
 
 }

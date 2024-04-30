@@ -1,5 +1,7 @@
 package com.example.comparison;
 
+import java.util.Objects;
+
 public class Scale {
 
     int value;
@@ -13,10 +15,13 @@ public class Scale {
     }
 
 
-    public Boolean isEqual(int givenValue) {
-        if(value == givenValue)
-            return true;
-        else
-            return false;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Scale scale = (Scale) o;
+        return value == scale.value;
     }
+
+
 }
