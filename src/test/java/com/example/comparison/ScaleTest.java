@@ -37,12 +37,12 @@ class ScaleTest {
     }
 
     @Test
-    void OnecmPlusOnecmEqualsTwocm(){
+    void OneCmPlusOneCmEqualsTwoCm(){
 
         Scale measurement = new Scale(1,"cm");
         Scale expectedMeasurement = new Scale(2,"cm");
 
-        Scale result = measurement.selfAdittion(measurement);
+        Scale result = measurement.selfAddition(measurement);
 
         assertEquals(expectedMeasurement,result);
 
@@ -50,12 +50,12 @@ class ScaleTest {
 
 
     @Test
-    void OnecmPlusOnecmNotEqualsFourcm(){
+    void OneCmPlusOneCmNotEqualsFourCm(){
 
         Scale measurement = new Scale(1,"cm");
         Scale expectedMeasurement = new Scale(4,"cm");
 
-        Scale result = measurement.selfAdittion(measurement);
+        Scale result = measurement.selfAddition(measurement);
 
         assertNotEquals(expectedMeasurement,result);
 
@@ -66,7 +66,7 @@ class ScaleTest {
         Scale measurement1 = new Scale(1,"m");
         Scale measurement2 = new Scale(100,"cm");
 
-        assertTrue(Scale.conversionIsEqual(measurement1,measurement2));
+        assertTrue(Scale.checkEquality(measurement1,measurement2));
     }
 
 
@@ -75,7 +75,47 @@ class ScaleTest {
         Scale measurement1 = new Scale(100,"cm");
         Scale measurement2 = new Scale(1,"m");
 
-        assertTrue(Scale.conversionIsEqual(measurement1,measurement2));
+        assertTrue(Scale.checkEquality(measurement1,measurement2));
+    }
+
+    @Test
+    void HundredcentimeterEqualsOneMeter(){
+        Scale measurement1 = new Scale(100,"centimeter");
+        Scale measurement2 = new Scale(1,"m");
+
+        assertTrue(Scale.checkEquality(measurement1,measurement2));
+    }
+
+    @Test
+    void OneMPlusHundredCmEquals200Cm(){
+
+        Scale measurement1 = new Scale(100,"cm");
+        Scale measurement2 = new Scale(1,"m");
+
+        Scale expectedResult = new Scale(200,"cm");
+
+        Scale result = Scale.convertandAdd(measurement1, measurement2);
+
+        assertEquals(result,expectedResult);
+
+
+
+    }
+
+    @Test
+    void OneMPlusHundredCmEquals2M(){
+
+        Scale measurement1 = new Scale(1,"m");
+        Scale measurement2 = new Scale(100,"cm");
+
+        Scale expectedResult = new Scale(2,"m");
+       // Scale expectedResult = new Scale(200,"cm");
+
+        Scale result = Scale.convertandAdd(measurement1, measurement2);
+
+        assertEquals(result,expectedResult);
+
+
     }
 
 
